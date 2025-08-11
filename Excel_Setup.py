@@ -16,7 +16,7 @@ def excel_settings(filename):
         ws.column_dimensions[column].width = max_length + 2
     
     wb.save(filename)
-    print("Mise en forme de l'excel terminée")
+    print("Excel formatting done")
 
 if __name__ == "__main__":
     excel_settings()
