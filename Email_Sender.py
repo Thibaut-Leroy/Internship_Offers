@@ -9,24 +9,24 @@ import os
 
 def email_sender(filename):
 
-    # Paramètres du serveur SMTP
-    smtp_server = 'smtp-mail.outlook.com'  # Remplacez par votre serveur SMTP
-    smtp_port = 587  # Port SMTP (habituellement 587 ou 465)
-    smtp_user = 'thibaut.leroy@edhec.com'  # Remplacez par votre adresse email
-    smtp_password = 'Vyruna*428700'  # Remplacez par votre mot de passe
+    # SMTP server params
+    smtp_server = 'smtp-mail.outlook.com'
+    smtp_port = 587
+    smtp_user = 'MAIL'
+    smtp_password = 'PASSWORD'
 
-    # Création du message
+    # Message creation
     msg = MIMEMultipart()
     msg['From'] = smtp_user
-    msg['To'] = 'thibaut.leroy@edhec.com'
+    msg['To'] = 'MAIL'
     day_date = str(dt.date.today())
-    msg['Subject'] = 'Offres de stage SG + CACIB -' + day_date
+    msg['Subject'] = 'Internship Offers SG + CACIB -' + day_date
 
-    # Corps du message
-    body = 'Ci-joint, les offres de stage SG et CACIB en date du ' + day_date
+    # Text
+    body = 'Find enclosed internships offers for SG and CACIB as of ' + day_date
     msg.attach(MIMEText(body, 'plain'))
 
-    # Pièce jointe
+    # Enclosure
     attachment = open(filename, 'rb')
     part = MIMEBase('application', 'octet-stream')
     part.set_payload(attachment.read())
@@ -35,15 +35,15 @@ def email_sender(filename):
     msg.attach(part)
     attachment.close()
 
-    # Connexion au serveur SMTP et envoi de l'email
+    # Mail sending
     server = smtplib.SMTP(smtp_server, smtp_port)
-    server.starttls()  # Sécurisation de la connexion
+    server.starttls()
     server.login(smtp_user, smtp_password)
     text = msg.as_string()
-    server.sendmail(smtp_user, 'thibaut.leroy@edhec.com', text)
+    server.sendmail(smtp_user, 'MAIL', text)
     server.quit()
     
-    print("Mail envoyé")
+    print("Mail sent")
 
 if __name__ == "__main__":
     email_sender()
