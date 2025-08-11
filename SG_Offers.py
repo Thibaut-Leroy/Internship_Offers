@@ -5,7 +5,6 @@ import datetime as dt
 from datetime import datetime
 from playwright.sync_api import sync_playwright
 
-# Fonctions pour récuperer les offres de stages
 def get_links_SG(url):
     with sync_playwright() as p:
         browser = p.webkit.launch(headless=True)  # headless=True pour exécuter en arrière-plan
